@@ -1,0 +1,27 @@
+POST http://localhost:8080/category HTTP/1.1
+Content-Type: application/json
+
+{
+      "name": "Category 1",
+      "description": "Category 1 description"
+}
+
+###
+
+GET http://localhost:8080/categories HTTP/1.1
+
+
+###
+POST http://localhost:8080/product HTTP/1.1
+Content-Type: application/json
+
+{
+      "name": "Product 1",
+      "description": "Product 1 description",
+      "category_id": "a0c66e65-9be8-4282-9a8f-9bf082bbd9d1",
+      "price": 100,
+      "image_url": "img.com/img1"
+}
+
+###
+GET http://localhost:8080/products HTTP/1.1

@@ -14,7 +14,7 @@ import (
 )
 
 func main() {
-	db, err := sql.Open("mysql", "root:root@tcp(localhost:3306)/devfullcycle")
+	db, err := sql.Open("mysql", "root:root@tcp(localhost:3306)/imersao17")
 	if err != nil {
 		panic(err.Error())
 	}
@@ -41,6 +41,6 @@ func main() {
 	c.Get("/product/category/{id}", webProductHandler.GetProductsByCategoryID)
 	c.Post("/product", webProductHandler.CreateProduct)
 
-	fmt.Println("Server running on http://localhost:3000")
-	http.ListenAndServe(":3000", c)
+	fmt.Println("Server running on http://localhost:8080")
+	http.ListenAndServe(":8080", c)
 }

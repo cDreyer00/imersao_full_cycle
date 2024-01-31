@@ -6,6 +6,8 @@ import (
 	"github.com/cDreyer00/devfullcycle/gopai/internal/entity"
 )
 
+const queryItems = `SELECT id, name, description, price, category_id, image_url FROM products`
+
 type ProductDB struct {
 	db *sql.DB
 }
@@ -15,7 +17,7 @@ func NewProductDB(db *sql.DB) *ProductDB {
 }
 
 func (pd *ProductDB) GetProducts() ([]*entity.Product, error) {
-	rows, err := pd.db.Query("SELECT id, name, description, price, category_id, image_url FROM products")
+	rows, err := pd.db.Query(queryItems)
 	if err != nil {
 		return nil, err
 	}
@@ -34,14 +36,14 @@ func (pd *ProductDB) GetProducts() ([]*entity.Product, error) {
 
 func (pd *ProductDB) GetProduct(id string) (*entity.Product, error) {
 	var product entity.Product
-	if err := pd.db.QueryRow("SELECT id, name, description, price, category_id, image_url FROM products WHERE id = ?", id).Scan(&product.ID, &product.Name, &product.Description, &product.Price, &product.CategoryID, &product.ImageURL); err != nil {
+	if err := pd.db.QueryRow(queryItems+" WHERE id = ?", id).Scan(&product.ID, &product.Name, &product.Description, &product.Price, &product.CategoryID, &product.ImageURL); err != nil {
 		return nil, err
 	}
 	return &product, nil
 }
 
 func (pd *ProductDB) GetProductsByCategoryID(categoryID string) ([]*entity.Product, error) {
-	rows, err := pd.db.Query("SELECT id, name, description, price, category_id, image_url FROM products WHERE category_id = ?", categoryID)
+	rows, err := pd.db.Query(queryItems+` WHERE category_id = ?`, categoryID)
 	if err != nil {
 		return nil, err
 	}
