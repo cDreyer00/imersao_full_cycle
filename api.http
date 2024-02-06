@@ -1,0 +1,22 @@
+GET http://localhost:3000 
+
+###
+
+GET http://localhost:3000/products
+
+###
+
+GET http://localhost:3000/products/3
+
+
+###
+
+POST http://localhost:3000/products
+Content-Type: application/json
+
+{
+    "name": "Product 1",
+    "description": "Description 1",
+    "image_url": "https://placehold.co/600x400",
+    "price": 100
+}
